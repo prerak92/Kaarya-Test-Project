@@ -42,15 +42,11 @@ public class SmsListener extends BroadcastReceiver {
             	}
                 
                 
-                // Here you can add any your code to work with incoming SMS
-                // I added encrypting of all received SMS 
-                
-                //putSmsToDatabase( contentResolver, sms );
             }
             
             // Display SMS message
             
-            Toast.makeText( context, messages, Toast.LENGTH_SHORT ).show();
+           // Toast.makeText( context, messages, Toast.LENGTH_SHORT ).show();
         }
         
         // WARNING!!! 

@@ -39,9 +39,9 @@ public class Kaarya_TestCaseActivity extends Activity {
 					postParameters.add(new BasicNameValuePair("pin", pin.getText().toString()));
 					if(pin.getText().toString().length()==4){
 					//Toast.makeText(getApplicationContext(), "Block", Toast.LENGTH_SHORT).show();
-					String res = CustomHttpClient.executeHttpPost("http://asa.kaar-ma.com:8080/test/auth",postParameters);
-					//Toast.makeText(getApplicationContext(),"after request", Toast.LENGTH_SHORT).show();
-					if(Html.fromHtml(res).toString().trim().equals("Welcome"))
+					int res = CustomHttpClient.executeHttpPost("http://asa.kaar-ma.com:8080/test/auth",postParameters);
+					Toast.makeText(getApplicationContext(),res, Toast.LENGTH_SHORT).show();
+					if(res==200)
 					{
 						String main_str=CustomHttpClient.executeHttpGet("http://asa.kaar-ma.com:8080/test/peers");
 						//Toast.makeText(getApplicationContext(), main_str, Toast.LENGTH_SHORT).show();
@@ -62,7 +62,7 @@ public class Kaarya_TestCaseActivity extends Activity {
 						intent.putExtras(b);
 						startActivity(intent);
 					}
-					else {
+					else if(res==400){
 						
 						//Intent intent = new Intent(v.getContext(),List_View.class);
 						//startActivityForResult(intent,0);

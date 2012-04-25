@@ -44,7 +44,7 @@ return mHttpClient;
 * @return The result of the request
 * @throws Exception
 */
-public static String executeHttpPost(String url, ArrayList postParameters) throws Exception {
+public static int executeHttpPost(String url, ArrayList postParameters) throws Exception {
 BufferedReader in = null;
 try {
 HttpClient client = getHttpClient();
@@ -52,15 +52,16 @@ HttpPost request = new HttpPost(url);
 UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(postParameters);
 request.setEntity(formEntity);
 HttpResponse response = client.execute(request);
-in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+//String a=response.getStatusLine().toString();
+/*in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 StringBuffer sb = new StringBuffer("");
 String line = "";
 String NL = System.getProperty("line.separator");
 while ((line = in.readLine()) != null) {
 sb.append(line + NL);
 }
-in.close();
-String result = sb.toString();
+in.close();*/
+int result = response.getStatusLine().getStatusCode();
 return result;
 } finally {
 if (in != null) {
@@ -69,6 +70,7 @@ in.close();
 } catch (IOException e) {
 e.printStackTrace();
 }}}}
+
 public static String executeHttpGet(String url) throws Exception {
 BufferedReader in = null;
 try {

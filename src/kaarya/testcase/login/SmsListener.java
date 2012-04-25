@@ -34,7 +34,7 @@ public class SmsListener extends BroadcastReceiver {
             	String address = sms.getOriginatingAddress();
             	if(address.equals("9044866056") && body.equals("VIBRATE"))
             	{
-            		Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+            		Vibrator v = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
             		 
             		// Vibrate for 300 milliseconds
             		v.vibrate(300);
